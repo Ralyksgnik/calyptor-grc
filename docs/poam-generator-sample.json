@@ -1,0 +1,58 @@
+{
+  "contractorId": "ABC-Manufacturing-Inc",
+  "assessmentDate": "2025-12-01T08:00:00Z",
+  "controls": [
+    {
+      "controlId": "AC.1.001",
+      "controlName": "Access Control – Limit system access",
+      "status": "compliant",
+      "evidence": [
+        {
+          "evidenceId": "EVID-001",
+          "type": "screenshot",
+          "description": "Active Directory group membership audit report",
+          "fileName": "AD_group_audit_2025-11-25.pdf",
+          "uploadedAt": "2025-11-25T14:23:45Z"
+        },
+        {
+          "evidenceId": "EVID-002",
+          "type": "csv",
+          "description": "Intune device compliance export",
+          "fileName": "intune_compliance_2025-11-27.csv",
+          "uploadedAt": "2025-11-27T09:12:03Z"
+        }
+      ],
+      "lastTested": "2025-11-27T10:00:00Z"
+    },
+    {
+      "controlId": "SC.3.024",
+      "controlName": "System and Communications Protection – Boundary protection",
+      "status": "non-compliant",
+      "evidence": [],
+      "lastTested": "2025-11-27T11:30:00Z",
+      "poam": {
+        "poamId": "POAM-001",
+        "finding": "Firewall configuration missing proper ACL on DMZ subnet",
+        "recommendedAction": "Update firewall ACLs to block inbound traffic except required ports",
+        "responsibleParty": "IT Security Team",
+        "dueDate": "2025-12-15",
+        "status": "open"
+      }
+    }
+  ],
+  "overallScore": {
+    "totalControls": 2,
+    "compliant": 1,
+    "nonCompliant": 1,
+    "compliancePercentage": 50
+  },
+  "generatedAt": "2025-12-01T08:15:00Z",
+  "notes": [
+    {
+      "noteId": "NOTE-001",
+      "author": "auditor_jdoe",
+      "timestamp": "2025-11-27T12:45:00Z",
+      "content": "Need to verify VLAN segmentation and firewall rules before next test."
+    }
+  ]
+}
