@@ -138,6 +138,45 @@ flowchart LR
 /diagrams    → Mermaid and Figma architecture diagrams  
 /src         → Demo scripts, prototypes, schema examples  
 ---
+
+## 🧪 Control Test Evaluator API Demo  
+
+A minimal API schema and demo implementation for submitting compliance control tests and receiving evaluation status.
+
+- **Schema**: see `/docs/control-evaluator-schema.yaml`  
+- **Demo API**: see `/src/python/control_evaluator_demo.py`  
+- **Run locally**:
+```bash
+cd src/python
+pip install fastapi[all]
+python control_evaluator_demo.py
+```
+
+- **Example request**:
+```json
+POST /evaluate-control
+{
+  "controlId": "AC.1.001",
+  "evidenceIds": ["EVID-001","EVID-002"],
+  "testResult": "pass",
+  "testedAt": "2025-12-01T09:00:00Z",
+  "comments": "All devices compliant"
+}
+```
+
+- **Example response**:
+```json
+{
+  "controlId": "AC.1.001",
+  "status": "compliant",
+  "evaluatedAt": "2025-12-01T09:05:00Z",
+  "details": {
+    "evidenceIds": ["EVID-001","EVID-002"],
+    "comments": "All devices compliant"
+  }
+}
+```
+
 🚀 Status
 
 Calyptor is currently in R&D phase, with architecture, workflows, and prototypes being documented for future development.
