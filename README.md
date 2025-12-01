@@ -46,4 +46,100 @@ flowchart LR
 
     subgraph CORE["Core GRC Engine"]
         CD["Control Dashboard"] --> EM["Evidence Management System"]
-        CD --> CTE["Contro]()
+        CD --> CTE["Control Test Evaluator"]
+        CD --> GA["Gap Analysis Engine"]
+        EM --> PE["POA&M Engine"]
+        EM --> CDOC["Compliance Documentation Store"]
+        CTE --> CS["Compliance Score Engine"]
+        GA --> CS
+        PE --> CS
+    end
+
+    P1 --> CD
+    P2 --> CD
+
+    subgraph AUTO["Automation & Ingestion"]
+        AEI["Automated Evidence Ingestion (API / CSV / Scripts)"]
+        CCC["Continuous Compliance Checks"]
+        LIA["License & User Inventory Automation"]
+        DCA["Device Compliance Automation (Intune / Scripts)"]
+        DRS["Daily Risk Snapshot Generator"]
+    end
+
+    AEI --> EM
+    CCC --> GA
+    LIA --> CD
+    DCA --> EM
+    DRS --> CS
+
+    subgraph INTEG["Security & Platform Integrations"]
+        M365["M365 / Entra ID Inventory"]
+        INTUNE["Intune Device Compliance"]
+        S1["SentinelOne / Huntress"]
+        QUP["Qualys / Umbrella / Proofpoint"]
+        NOTIF["Slack / Email Notifications"]
+    end
+
+    M365 --> AEI
+    INTUNE --> DCA
+    S1 --> CCC
+    QUP --> CCC
+    CS --> NOTIF
+
+    subgraph REPORT["Reporting & Audit Modes"]
+        RPT["PDF / CSV Report Builder"]
+        AUD["Auditor Mode"]
+        CP["Customer Portal Mode"]
+        CRG["Compliance Roadmap Generator"]
+    end
+
+    CS --> RPT
+    CS --> AUD
+    CS --> CRG
+    P2 --> CP
+
+    subgraph AI["AI Assistance Layer"]
+        AIEC["AI Evidence Classifier"]
+        AIGE["AI Gap Explanation Generator"]
+        AIAA["AI Auditor Assistant"]
+        ASSP["Automated SSP Builder"]
+        IAC["Internal Audit Checklist System"]
+    end
+
+    EM --> AIEC
+    GA --> AIGE
+    AUD --> AIAA
+    CDOC --> ASSP
+    CD --> IAC
+
+    subgraph INFRA["Platform Infrastructure"]
+        DB["Compliance Database"]
+        FS["File Storage (Evidence Uploads)"]
+        API["REST API Layer"]
+        LOGS["Audit Log System"]
+    end
+
+    EM --> DB
+    PE --> DB
+    CS --> DB
+    EM --> FS
+    CORE --> API
+    AUTO --> API
+    INTEG --> API
+    REPORT --> API
+    AI --> API
+    API --> LOGS
+```
+---
+
+📁 Repository Structure
+
+/docs        → Detailed design documents, workflows, SSA/POA&M logic  
+/diagrams    → Mermaid and Figma architecture diagrams  
+/src         → Demo scripts, prototypes, schema examples  
+---
+🚀 Status
+
+Calyptor is currently in R&D phase, with architecture, workflows, and prototypes being documented for future development.
+
+Stay tuned for further updates — or reach out to collaborate.
