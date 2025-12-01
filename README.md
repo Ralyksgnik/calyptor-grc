@@ -176,6 +176,16 @@ POST /evaluate-control
   }
 }
 ```
+--
+## Demo / How to Test
+Prerequisites (Python version, pip, maybe uvicorn)
+
+Installation instructions, e.g.:
+
+cd src/python  
+pip install fastapi uvicorn  
+uvicorn control_evaluator_demo:app --reload
+
 
 🚀 Status
 
