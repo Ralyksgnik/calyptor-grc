@@ -1,1 +1,61 @@
 Scheme file here
+openapi: 3.0.3
+info:
+  title: Calyptor Control Test Evaluator API
+  version: "0.1.0"
+  description: API to submit control test results and get compliance status
+paths:
+  /evaluate-control:
+    post:
+      summary: Submit control test result
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                controlId:
+                  type: string
+                  example: "AC.1.001"
+                evidenceIds:
+                  type: array
+                  items:
+                    type: string
+                  example: ["EVID-001","EVID-002"]
+                testResult:
+                  type: string
+                  enum: ["pass","fail","not_applicable"]
+                  example: "pass"
+                testedAt:
+                  type: string
+                  format: date-time
+                  example: "2025-12-01T09:00:00Z"
+                comments:
+                  type: string
+                  example: "All devices compliant"
+              required:
+                - controlId
+                - testResult
+                - testedAt
+      responses:
+        '200':
+          description: Control evaluation result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  controlId:
+                    type: string
+                  status:
+                    type: string
+                    enum: ["compliant","non-compliant","not_applicable"]
+                  evaluatedAt:
+                    type: string
+                    format: date-time
+                  details:
+                    type: object
+                    description: Additional compliance details / metadata
+        '400':
+          description: Invalid input
